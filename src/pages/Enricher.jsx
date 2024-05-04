@@ -13,11 +13,10 @@ function Enricher() {
       const updateCriteria = type === "qualification" ? [...qualificationCriteria] : [...disqualificationCriteria];
       updateCriteria[index] = value;
       type === "qualification" ? setQualificationCriteria(updateCriteria) : setDisqualificationCriteria(updateCriteria);
-      if (!isTextUpdate) {
-        const newImportance = [...importanceSelection];
-        newImportance[index] = value;
-        setImportanceSelection(newImportance);
-      }
+    } else {
+      const newImportance = [...importanceSelection];
+      newImportance[index] = value;
+      setImportanceSelection(newImportance);
     }
   };
 
@@ -26,13 +25,13 @@ function Enricher() {
     return criteria.map((criteria, index) => (
       <HStack key={index} spacing={2}>
         <Input value={criteria} onChange={(e) => handleCriteriaChange(index, e.target.value, type)} placeholder={`${type} criteria ${index + 1}`} />
-        <Button colorScheme={importanceSelection[index] === "High" ? "green" : "gray"} onClick={() => handleCriteriaChange(index, "High", type, false)}>
+        <Button colorScheme={importanceSelection[index] === "High" ? "green.600" : "green.400"} onClick={() => handleCriteriaChange(index, "High", type, false)}>
           High
         </Button>
-        <Button colorScheme={importanceSelection[index] === "Medium" ? "yellow" : "gray"} onClick={() => handleCriteriaChange(index, "Medium", type, false)}>
+        <Button colorScheme={importanceSelection[index] === "Medium" ? "yellow.600" : "yellow.400"} onClick={() => handleCriteriaChange(index, "Medium", type, false)}>
           Medium
         </Button>
-        <Button colorScheme={importanceSelection[index] === "Low" ? "red" : "gray"} onClick={() => handleCriteriaChange(index, "Low", type, false)}>
+        <Button colorScheme={importanceSelection[index] === "Low" ? "red.600" : "red.400"} onClick={() => handleCriteriaChange(index, "Low", type, false)}>
           Low
         </Button>
       </HStack>
